@@ -12,6 +12,7 @@ const navItems = [
 
 const UserLayout = () => {
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
