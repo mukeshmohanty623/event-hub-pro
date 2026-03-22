@@ -13,7 +13,8 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { LayoutDashboard, Calendar, UserCheck, Users2, LogOut, Menu } from "lucide-react";
+import { LayoutDashboard, Calendar, UserCheck, Users2, LogOut, Moon, Sun } from "lucide-react";
+import { useTheme } from "@/hooks/use-theme";
 
 const adminNav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -59,6 +60,7 @@ function AdminSidebar() {
 }
 
 const AdminLayout = () => {
+  const { theme, toggleTheme } = useTheme();
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -68,6 +70,13 @@ const AdminLayout = () => {
             <SidebarTrigger className="shrink-0" />
             <span className="text-sm font-medium text-muted-foreground">Admin Panel</span>
             <div className="flex-1" />
+            <button
+              onClick={toggleTheme}
+              className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-accent"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            </button>
             <Link to="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
               <LogOut className="w-3.5 h-3.5" /> Exit
             </Link>
